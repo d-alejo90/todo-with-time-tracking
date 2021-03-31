@@ -1,0 +1,6 @@
+<p>Are you sure you want to delete "{{task.title}}"?</p>
+<a href="{% url 'list' %}">No</a>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes">
+</form>

@@ -1,9 +1,12 @@
 from django.db import models
+from authentication.models import User
+from helpers.models import TrackingModel
 
-class Task(models.Model):
+class Task(TrackingModel):
     title = models.CharField(max_length=200)
+    description = models.CharField(max_length=500, default=None)
     complete = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.title
+        return self.title + ' - ' + self.description 
