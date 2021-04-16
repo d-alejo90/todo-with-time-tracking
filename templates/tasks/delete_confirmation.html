@@ -1,6 +1,29 @@
-<p>Are you sure you want to delete "{{task.title}}"?</p>
-<a href="{% url 'list' %}">No</a>
-<form method="post">
-    {% csrf_token %}
-    <input type="submit" value="Yes">
-</form>
+{% extends '../layout/base.html' %} 
+{% load static %} 
+{% block title %} 
+Delete Task: {{task.title}}
+{% endblock %} 
+{% block content %}
+<main
+	class="flex flex-col justify-center items-center bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-10"
+>
+	<h3 class="font-mono font-bold text-4xl">Delete Task</h3>
+	<p class="font-mono font-bold text-2xl">
+		Are you sure you want to delete "{{task.title}}"?
+	</p>
+
+	<form method="post" class="flex">
+		{% csrf_token %}
+		<input
+			type="submit"
+			value="Yes"
+			class="w-full mr-10 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+		/>
+		<a
+			href="{% url 'list' %}"
+			class="w-full mr-10 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+			>No</a
+		>
+	</form>
+</main>
+{% endblock %}

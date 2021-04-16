@@ -6,7 +6,8 @@ class Task(TrackingModel):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=500, default=None)
     complete = models.BooleanField(default=False)
-    owner = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True)
+    owner = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True, related_name="owner")
+    assigned_to = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=True, null=True, related_name="assignee")
 
     def __str__(self):
         return self.title + ' - ' + self.description 

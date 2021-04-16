@@ -18,5 +18,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('tasks.urls'))
+    path('', include('tasks.urls')),
+    path('', include('authentication.urls')),
 ]
+
+handler404 = "helpers.views.handle_not_found"

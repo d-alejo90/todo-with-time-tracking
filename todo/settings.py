@@ -26,7 +26,7 @@ SECRET_KEY = '$#ih-=p6y-xg%5r6ul6op)afza9)f58hv92c=((4*l_4x@16ru'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 AUTH_USER_MODEL = "authentication.User"
 
