@@ -5,7 +5,8 @@
 {% block content %}
 
 <main class="flex flex-col justify-center items-center w-full">
-<h1 class="font-mono font-bold text-6xl text-white">To Do App</h3>
+<h1 class="font-mono font-bold text-5xl text-white">Welcome {{request.user.username}}</h3>
+<p class="font-mono font-bold text-3xl text-white">This is your TO DO app</p>
  {% include 'layout/messages.html' %}
   <div class='flex-grow overflow-auto w-full mt-10'>
     <table class="mx-auto max-w-4xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">

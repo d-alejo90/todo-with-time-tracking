@@ -1,0 +1,40 @@
+{% extends '../layout/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="bg-grey-lighter min-h-screen flex flex-col">
+    <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+            <h1 class="mb-8 text-3xl text-center">Sign In</h1>
+            {% include 'layout/messages.html' %}
+            <form class="bg-white px-6 py-8 rounded shadow-md text-black w-full" method="post" action="{% url 'signin' %}">
+                {% csrf_token %}
+                <input 
+                type="text" 
+                name="username"
+                value="{{data.username}}"
+                class="block border border-grey-light w-full p-3 rounded mb-4"
+                placeholder="Username" />
+                <input 
+                type="password" 
+                name="password"
+                value="{{data.password}}"
+                class="block border border-grey-light w-full p-3 rounded mb-4"
+                placeholder="Password" />
+                <button 
+                    type="submit" 
+                    class="border-2 border-gray-100 focus:outline-none bg-purple-400 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-purple-700">
+                    Sign In
+                </button>
+            </form>
+            <div class="text-center mt-12">
+                <span>
+                    Don't have an account?
+                </span>
+                <a href="#" class="font-light text-md text-indigo-600 underline font-semibold hover:text-indigo-800">Create One</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

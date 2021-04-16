@@ -5,9 +5,26 @@
 			<span>TO-DO</span>
 		</a>
 		<div>
+		{% if request.user.is_authenticated %}
+			<div class="flex">
+				<a 
+				href="{% url 'add_task' %}"
+				class="ml-5 bg-gradient-to-r from-purple-400 to-blue-500 hover:from-pink-500 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-md mr-6">
+					Create Task
+				</a>
+				<form action="{% url 'logout' %}">
+					{% csrf_token %}
+					<input 
+						type="submit" 
+						value="Logout"
+						class="ml-5 bg-gradient-to-r from-red-400 to-pink-500 hover:from-yellow-500 hover:to-orange-500 text-white font-semibold px-6 py-3 rounded-md mr-6">
+					
+				</form>
+			</div>
+		{% else %}
 			<a
 				href="{% url 'signin' %}"
-				class="ml-5 hover:bg-blue-400 text-white font-bold font-mono py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+				class="ml-5 hover:bg-blue-400 text-white font-bold font-mono px-6 py-3 rounded focus:outline-none focus:shadow-outline"
 			>
 				Login
 			</a>
@@ -17,6 +34,7 @@
 			>
 				Register
 			</a>
+		{% endif %}
 		</div>
 	</nav>
 </header>

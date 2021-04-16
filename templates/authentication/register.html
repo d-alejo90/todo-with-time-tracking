@@ -3,55 +3,64 @@
 {% load static %}
 
 {% block content %}
-<div class="bg-grey-lighter min-h-screen flex flex-col">
-            <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-                    <h1 class="mb-8 text-3xl text-center">Sign up</h1>
-                    <input 
-                        type="text"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="fullname"
-                        placeholder="Full Name" />
+<section class="bg-grey-lighter min-h-screen flex flex-col">
+    <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+            <h1 class="mb-8 text-3xl text-center">Sign up</h1>
+            {% include 'layout/messages.html' %}
+            <form class="bg-white px-6 py-8 rounded shadow-md text-black w-full" method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <input 
+                    type="text"
+                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    name="username"
+                    value="{{data.username}}"
+                    placeholder="User Name" />
 
-                    <input 
-                        type="text"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="email"
-                        placeholder="Email" />
+                <input 
+                    type="text"
+                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    name="email"
+                    value="{{data.email}}"
+                    placeholder="Email" />
 
-                    <input 
-                        type="password"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="password"
-                        placeholder="Password" />
-                    <input 
-                        type="password"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="confirm_password"
-                        placeholder="Confirm Password" />
+                <input 
+                    type="password"
+                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    name="password"
+                    value="{{data.password}}"
+                    placeholder="Password" />
+                <input 
+                    type="password"
+                    class="block border border-grey-light w-full p-3 rounded mb-4"
+                    name="password2"
+                    value="{{data.password2}}"
+                    placeholder="Confirm Password" />
 
-                    <button
-                        type="submit"
-                        class="w-full text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1"
-                    >Create Account</button>
+                <button
+                    type="submit"
+                    class="border-2 border-gray-100 focus:outline-none bg-purple-400 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-purple-700"
+                >Create Account</button>
+            </form>
+            
 
-                    <div class="text-center text-sm text-grey-dark mt-4">
-                        By signing up, you agree to the 
-                        <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
-                            Terms of Service
-                        </a> and 
-                        <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
-                            Privacy Policy
-                        </a>
-                    </div>
-                </div>
-
-                <div class="text-grey-dark mt-6">
-                    Already have an account? 
-                    <a class="no-underline border-b border-blue text-blue" href="../login/">
-                        Log in
-                    </a>.
-                </div>
+            <div class="text-center text-sm text-grey-dark mt-4">
+                By signing up, you agree to the 
+                <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
+                    Terms of Service
+                </a> and 
+                <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
+                    Privacy Policy
+                </a>
             </div>
         </div>
+
+        <div class="text-white mt-6">
+            Already have an account? 
+            <a class="no-underline border-b border-blue text-blue" href="{% url 'signin' %}">
+                Log in
+            </a>.
+        </div>
+    </div>
+</section>
 {% endblock content%}
