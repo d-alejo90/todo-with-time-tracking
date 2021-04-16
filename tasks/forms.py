@@ -6,7 +6,7 @@ class TaskForm(ModelForm):
 
     class Meta:
         model = Task
-        fields = ['title', 'description', 'complete'];
+        fields = ['title', 'description', 'complete', 'owner'];
         
     input_attrs = {'class': 'block border border-grey-light w-full p-3 rounded mb-4'}
     

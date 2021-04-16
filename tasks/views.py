@@ -34,8 +34,8 @@ def add_task(request):
     
     if request.method == 'POST':
         form = TaskForm(request.POST)
-        
         if form.is_valid():
+            form.owner = request.user
             form.save()
             messages.add_message(request, messages.SUCCESS, "Task Created Successfully")
         return redirect('/')
@@ -73,8 +73,8 @@ def deleteTask(request, id):
     task = get_object_or_404(Task, pk=id)
 
     if request.method == 'POST':
-        if task.owner != request.user:
-            messages.add_message(request, messages.Error, "You can't delete this task because you are not the owner")
+        if task.owner != request.user and task.owner is not None:
+            messages.add_message(request, messages.ERROR, "You can't delete this task because you are not the owner")
             return redirect('/')
         task.delete()
         messages.add_message(request, messages.SUCCESS, "Task deleted Successfully")
